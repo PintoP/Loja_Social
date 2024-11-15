@@ -1,43 +1,46 @@
 package com.example.loja.modelos
 
-class administrador {
+import android.widget.Toast
+import com.google.firebase.firestore.FirebaseFirestore
+import android.content.Context
+
+class Administrador {
     //region atributos
     var nome: String = ""
     var email: String = ""
-    var contacto: Int =0
+    var contacto: Int = 0
     var palavrapasse: String = ""
-
-
-    //region propriedades
-    // Getter e Setter para 'nome'
-    var Nome: String
-        get() = nome
-        set(value) { nome = value }
-
-        // Getter e Setter para 'email'
-    var Mail: String
-        get() = email
-        set(value) { email = value }
-
-        // Getter e Setter para 'contacto'
-    var Contacto: Int
-        get() = contacto
-        set(value) { contacto = value }
-
-        // Getter e Setter para 'palavraPasse'
-    var palavraPasse: String
-        get() = palavrapasse
-        set(value) { palavrapasse = value }
+    //endregion
 
     //region metodos
 
-        //função pra editar
+    // Função para validar o login do administrador
+    fun valida_email(context: Context, a_email: String, a_pass: String, callback: (Boolean) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
 
-        //função pra remover admin
+        // Referência para a coleção de administradores no Firestore
+        val query = db.collection("administradores")
+            .whereEqualTo("email", a_email)
+            .whereEqualTo("palavrapasse", a_pass)
 
-        //função pra validar o login
-    fun valida_email(a_email: String, a_pass : String)
-    {
-
+        query.get()
+            .addOnSuccessListener { documents ->
+                if (documents.isEmpty) {
+                    // Caso o email e senha não correspondam
+                    Toast.makeText(context,"Credenciais inválidas",Toast.LENGTH_SHORT).show()
+                    callback(false)
+                } else {
+                    // Caso o login seja bem-sucedido
+                    Toast.makeText(context,"Login realizado com sucesso",Toast.LENGTH_SHORT).show()
+                    callback(true)
+                }
+            }
+            .addOnFailureListener { exception ->
+                // Caso haja algum erro no Firestore
+                Toast.makeText(context,"Erro ao validar: ${exception.message}",Toast.LENGTH_SHORT).show()
+                callback(false)
+            }
     }
+
+    //endregion
 }

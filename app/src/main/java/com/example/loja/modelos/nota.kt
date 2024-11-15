@@ -6,21 +6,7 @@ class nota {
     var tipo : String = ""
     var descricao :String= ""
 
+//region metodos
 
-    // Getter e Setter para 'notaId'
-    var NotaId: Int
-        get() = notaId
-        set(value) { notaId = value }
-
-    // Getter e Setter para 'tipo'
-    var Tipo: String
-        get() = tipo
-        set(value) { tipo = value }
-
-    // Getter e Setter para 'descricao'
-    var Descricao: String
-        get() = descricao
-        set(value) { descricao = value }
 }
 
-//region metodos
