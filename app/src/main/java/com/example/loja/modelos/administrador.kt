@@ -19,7 +19,7 @@ class Administrador {
         val db = FirebaseFirestore.getInstance()
 
         // Referência para a coleção de administradores no Firestore
-        val query = db.collection("administradores")
+        val query = db.collection("administrador")
             .whereEqualTo("email", a_email)
             .whereEqualTo("palavrapasse", a_pass)
 

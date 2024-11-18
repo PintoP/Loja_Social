@@ -16,10 +16,10 @@
 
     <!-- Campo de usuário -->
     <EditText
-        android:id="@+id/editUsername"
+        android:id="@+id/editEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Usuário"
+        android:hint="Email"
         android:layout_below="@id/titleText"
         android:layout_marginTop="16dp" />
 
@@ -28,8 +28,8 @@
         android:id="@+id/editPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Senha"
-        android:layout_below="@id/editUsername"
+        android:hint="Palavra-Passe"
+        android:layout_below="@id/editEmail"
         android:layout_marginTop="16dp"
         android:inputType="textPassword" />
 
